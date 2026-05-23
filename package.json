@@ -32,7 +32,8 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4"
   },
-  "overrides": {
-    "path-to-regexp": "0.1.13"
+  "overrides": {},
+  "engines": {
+    "node": ">=22"
   }
 }
