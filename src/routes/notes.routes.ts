@@ -3,12 +3,16 @@ import * as notesService from '../services/notes.service';
 
 const router = Router();
 
+type NoteIdParams = {
+  id: string;
+};
+
 router.get('/', (_request: Request, response: Response) => {
   response.json(notesService.getAll());
 });
 
-router.get('/:id', (request: Request, response: Response) => {
-  const note = notesService.getById(request.body.params.id);
+router.get('/:id', (request: Request<NoteIdParams>, response: Response) => {
+  const note = notesService.getById(request.params.id);
 
   if (!note) {
     return response.status(404).end();
@@ -26,8 +30,8 @@ router.post('/', (request: Request, response: Response, next: NextFunction) => {
   }
 });
 
-router.delete('/:id', (request: Request, response: Response) => {
-  notesService.remove(request.body.params.id);
+router.delete('/:id', (request: Request<NoteIdParams>, response: Response) => {
+  notesService.remove(request.params.id);
   return response.status(204).end();
 });
 
